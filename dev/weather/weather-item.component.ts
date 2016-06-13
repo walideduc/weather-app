@@ -17,9 +17,6 @@ import {WeatherItem} from './weather-item';
     // inputs:['weatherItem : item']            
 })
 export class WeatherItemComponent{
-    @Input('item') weatherItem : WeatherItem
-    constructor(){
-        this.weatherItem = new WeatherItem('Paris','sunny',29);
-    }
-    
+    @Input('item') weatherItem : WeatherItem;
+   
 } 

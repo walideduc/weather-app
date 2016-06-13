@@ -1,7 +1,8 @@
 import {Component,OnInit} from 'angular2/core';
 import {WeatherItemComponent} from './weather-item.component';
 import {WeatherItem} from './weather-item'
-import {WEATHERITEMS} from './weather.data';
+import {WeatherService} from './weather.service';
+
 
 @Component({
     selector: 'weather-list',
@@ -10,12 +11,20 @@ import {WEATHERITEMS} from './weather.data';
         <weather-item *ngFor= "#weatheritem of weatheritems" [item]=weatheritem > </weather-item>
     </section>    
                 `,
-    directives: [WeatherItemComponent]
+    directives: [WeatherItemComponent],
+    providers:[WeatherService],
 })
 export class WeatherListComponent implements OnInit{
     weatheritems : WeatherItem[];
     
+    constructor(private _weatherService : WeatherService){
+        
+    }
+     getWeatherItems(){
+         this.weatheritems = this._weatherService.getWeatherItems();
+     }
+    
     ngOnInit():any{
-        this.weatheritems = WEATHERITEMS;
+        this.getWeatherItems();
     }
 }
